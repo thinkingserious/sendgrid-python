@@ -1,10 +1,11 @@
 import os
 import unittest
 import json
+import sys
 from sendgrid import SendGridClient, Mail
 
 
-class TestSendGrid(unittest.TestCase):
+class TestPython2(unittest.TestCase):
 
     def setUp(self):
         self.sg = SendGridClient(os.getenv('SG_USER'), os.getenv('SG_PWD'))
@@ -20,6 +21,17 @@ class TestSendGrid(unittest.TestCase):
         result = self.sg._build_body(m)
 
         self.assertEqual(result['to[]'], mock['to[]'])
+
+class TestPython3(unittest.TestCase):
+
+    def setUp(self):
+        self.sg = SendGridClient(os.getenv('SG_USER'), os.getenv('SG_PWD'))
+
+class TestGeneral(unittest.TestCase):
+    def setUp(self):
+        self.sg = SendGridClient(os.getenv('SG_USER'), os.getenv('SG_PWD'))
+
+
 
     def test_send(self):
         m = Mail()
@@ -73,4 +85,8 @@ class TestSendGrid(unittest.TestCase):
         self.assertEqual(url, test_url)
 
 if __name__ == '__main__':
-    unittest.main()
+    tests = unittest.TestSuite(TestGeneral)
+    if sys.hexversion < 0x03000000:
+        test.addTests(TestPython2)
+    else:
+        test.addTests(TestPython3)
