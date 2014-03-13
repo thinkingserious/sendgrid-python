@@ -7,6 +7,7 @@ def getRequires():
         deps.append('unittest2')
     else:
         deps.append('unittest2py3k')
+    return deps
 
 
 setup(
