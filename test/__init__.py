@@ -1,5 +1,5 @@
 import os
-import unittest
+import unittest2 as unittest
 import json
 import sys
 from sendgrid import SendGridClient, Mail
