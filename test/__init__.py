@@ -8,7 +8,7 @@ class TestSendGrid(unittest.TestCase):
     def setUp(self):
         self.sg = SendGridClient(os.getenv('SG_USER'), os.getenv('SG_PWD'))
 
-    @unittest.skipUnless(int(sys.version[0]) < 3, 'only for python2')
+    @unittest.skipUnless(int(sys.version[0]) == 2, 'only for python2')
     def test_unicode_recipients(self):
         recipients = [u'test@test.com', u'guy@man.com']
         m = Mail(to=recipients,
