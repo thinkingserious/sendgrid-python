@@ -10,6 +10,7 @@ class TestSendGrid(unittest.TestCase):
 
     @unittest.skipUnless(int(sys.version[0]) == 2, 'only for python2')
     def test_unicode_recipients(self):
+        print sys.version
         recipients = [u'test@test.com', u'guy@man.com']
         m = Mail(to=recipients,
                  subject='testing',
