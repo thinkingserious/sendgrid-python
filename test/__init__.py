@@ -14,7 +14,7 @@ class TestSendGrid(unittest.TestCase):
         # the test will fail. Adding a workaround.
 
         if sys.hexversion < 0x03000000:
-            recipients = [u'test@test.com', u'guy@man.com']
+            recipients = [unicode('test@test.com'), unicode('guy@man.com')]
         else:
             recipients = []
 
