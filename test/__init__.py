@@ -8,7 +8,7 @@ class TestSendGrid(unittest.TestCase):
     def setUp(self):
         self.sg = SendGridClient(os.getenv('SG_USER'), os.getenv('SG_PWD'))
 
-    @unittest.skipUnless(sys.hexversion < 0x03000000, 'only for python2')
+    @unittest.skipUnless(sys.version_info < (3,0), 'only for python2')
     def test_unicode_recipients(self):
         # Even though the test is skipped, its interpreted, therefore,
         # the test will fail. Adding a workaround.
